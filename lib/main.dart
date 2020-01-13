@@ -83,6 +83,8 @@ class _PainterState extends State<Painter> {
               paint: Paint()
                 ..color = selectedColor
                 ..isAntiAlias = true
+                ..strokeJoin = StrokeJoin.round
+                ..strokeCap = StrokeCap.round
                 ..strokeWidth = strokeWidth,
               points: dragStartDetails.localPosition,
             ),
@@ -97,6 +99,8 @@ class _PainterState extends State<Painter> {
               paint: Paint()
                 ..color = selectedColor
                 ..isAntiAlias = true
+                ..strokeJoin = StrokeJoin.round
+                ..strokeCap = StrokeCap.round
                 ..strokeWidth = strokeWidth,
               points: dragStartDetails.localPosition,
             ),
@@ -163,11 +167,8 @@ class MyPainter extends CustomPainter {
     pointsList.forEach((List<Points> points) {
       for (var index = 0; index < points.length - 1; index++) {
         if (points[index] != null && points[index + 1] != null) {
-          canvas.drawLine(points[index].points, points[index + 1].points, points[index].paint);
-          // final path = Path()
-          //   ..moveTo(points[index].points.dx, points[index].points.dy)
-          //   ..lineTo(points[index + 1].points.dx, points[index + 1].points.dy);
-          // canvas.drawPath(path, points[index].paint);
+          canvas.drawLine(points[index].points, points[index + 1].points,
+              points[index].paint);
         } else if (points[index] != null && points[index + 1] == null) {
           canvas.drawPoints(
               PointMode.points, [points[index].points], points[index].paint);
